@@ -281,6 +281,17 @@ exec "scripts/modules/syncauth.cfg"
 exec "scripts/modules/spy.cfg"
 
 
+
+//******** Autopause module ********
+// Automatically pauses the game when some disconnects or goes into spectator
+
+// Enable autopause by default (can be controlled in-game via #autopause [1|0]
+autopause_on = 1
+
+// Execute module
+exec "scripts/modules/autopause.cfg"
+
+
 // -------------------------------------
 // COMMANDS
 // -------------------------------------

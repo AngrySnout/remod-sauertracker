@@ -474,7 +474,7 @@ namespace server
     void checkpausegame();
     void clearusers();
     void revokemaster(clientinfo *ci);
-    void changemap(const char *s, int mode);
+    void changemap(const char *s, int mode, bool forced = false);
     void rotatemap(bool next);
     void suicide(clientinfo *ci);
     void checkmaps(int req = -1);

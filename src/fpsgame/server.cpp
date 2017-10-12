@@ -1712,7 +1712,7 @@ namespace server
     // remod
     VAR(persist, 0, 0, 1);
 
-    void changemap(const char *s, int mode)
+    void changemap(const char *s, int mode, bool forced)
     {
         stopdemo();
         pausegame(false);
@@ -1780,6 +1780,7 @@ namespace server
         // remod
         if(autodemo) demonextmatch = true;
         remod::onevent(ONMAPSTART, "");
+        if (forced) remod::onevent(ONMAPFORCE, "");
     }
 
     void rotatemap(bool next)
@@ -1852,7 +1853,7 @@ namespace server
             map = maprotations[idx].map;
         }
         if(hasnonlocalclients()) sendservmsgf("local player forced %s on map %s", modename(mode), map[0] ? map : "[new map]");
-        changemap(map, mode);
+        changemap(map, mode, true);
     }
 
     void vote(const char *map, int reqmode, int sender)
@@ -1879,7 +1880,7 @@ namespace server
             if(demorecord) enddemorecord();
             if(!ci->local || hasnonlocalclients())
                 sendservmsgf("%s forced %s on map %s", colorname(ci), modename(ci->modevote), ci->mapvote[0] ? ci->mapvote : "[new map]");
-            changemap(ci->mapvote, ci->modevote);
+            changemap(ci->mapvote, ci->modevote, true);
         }
         else
         {
